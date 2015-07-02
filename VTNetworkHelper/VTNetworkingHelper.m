@@ -82,7 +82,6 @@
     if (needsAuth){
         [manager.requestSerializer clearAuthorizationHeader];
         //        [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:@"#Username" password:@"#Password"];
-        [manager.requestSerializer setValue:[NSString stringWithFormat:@"Token token=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"api_token"]] forHTTPHeaderField:@"Authorization"];
     }
     
     manager.responseSerializer =[AFJSONResponseSerializer serializer];
