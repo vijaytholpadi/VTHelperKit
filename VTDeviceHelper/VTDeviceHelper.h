@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 TheGeekProjekt. All rights reserved.
 //
 
-
+#import <UIKit/UIKit.h>
 #pragma mark - Logging
 
 static inline void DLog(NSString *format, ...) {
@@ -66,6 +66,28 @@ static inline BOOL iOS8Device() {
     return ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0);
 }
 
+#pragma mark - Determine device resolution
+static inline NSString* deviceResolution() {
+    NSString *resolution = @"hdpi";
+    
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    CGFloat screenScale = [[UIScreen mainScreen] scale];
+    CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+
+    if ((screenSize.height == 480) && (screenSize.width == 320)) {
+        resolution = @"mdpi";
+    }else if ((screenSize.height == 960) && (screenSize.width == 640)) {
+        resolution = @"hdpi";
+    }else if ((screenSize.height == 1136) && (screenSize.width == 640)) {
+        resolution = @"hdpi";
+    }else if ((screenSize.height == 1334) && (screenSize.width == 750)) {
+        resolution = @"xhdpi";
+    }else if ((screenSize.height == 2208) && (screenSize.width == 1242)) {
+        resolution = @"xxhdpi";
+    }
+    return resolution;
+}
+
 #pragma mark - User Defaults
 
 static inline void saveDefaults() {
@@ -112,7 +134,7 @@ static inline void removeNotificationObserver(id observer) {
 #pragma mark - Alert View
 
 static inline void showAlertWithTitleAndDelegate(NSString *title, NSString *message, id delegate) {
-    if (iOS8Device) {
+    if (iOS8Device()) {
         NSString *titleString = title ? title : @"";
         NSString *messageString = title ? message : [NSString stringWithFormat:@"%@", message];
         [[[UIAlertView alloc] initWithTitle:titleString message:messageString delegate:delegate cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
@@ -153,7 +175,7 @@ static inline void showAlert(NSString *message) {
 #pragma mark - Other
 
 static inline UIStoryboard * Storyboard() {
-    return [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+    return [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
 }
 
 static inline BOOL notNull(id value) {

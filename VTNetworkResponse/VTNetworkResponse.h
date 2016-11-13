@@ -6,10 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "VTError.h"
 
 @interface VTNetworkResponse : NSObject
 @property (nonatomic, assign) BOOL isSuccessful;
-@property (nonatomic, retain) NSError * error;
+@property (nonatomic, retain) VTError * error;
 @property (nonatomic, retain) id data;
 
 @end

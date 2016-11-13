@@ -9,8 +9,8 @@
 
 @interface VTNoInternetView : UIView
 
-@property (strong, nonatomic) IBOutlet UIView *containerView;
+@property (nonatomic, strong) IBOutlet UIView *containerView;
 
-@property (strong, nonatomic) IBOutlet UIButton *tryAgainButton;
+@property (nonatomic, strong) IBOutlet UIButton *tryAgainButton;
 
 @end
