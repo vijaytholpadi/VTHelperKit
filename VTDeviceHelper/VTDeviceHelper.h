@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#pragma mark - Logging
 
+#pragma mark - Logging
 static inline void DLog(NSString *format, ...) {
 #ifdef DEBUG
     va_list args;
@@ -19,17 +19,15 @@ static inline void DLog(NSString *format, ...) {
 }
 
 #pragma mark - Colors
-
-static inline UIColor * RGBA(int r, int g, int b, float a) {
+static inline UIColor *RGBA(int r, int g, int b, float a) {
     return [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a];
 }
 
-static inline UIColor * RGB(int r, int g, int b) {
+static inline UIColor *RGB(int r, int g, int b) {
     return RGBA(r, g, b, 1.0);
 }
 
 #pragma mark - Device
-
 static inline BOOL iPhoneDevice() {
     return ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone);
 }
@@ -54,20 +52,12 @@ static inline BOOL iPhone4Screen() {
     return ([[UIScreen mainScreen] bounds].size.height == iPhone4ScreenHeight);
 }
 
-static inline BOOL iPhone5ScreenOrBigger() {
-    return ([[UIScreen mainScreen] bounds].size.height >= iPhone5ScreenHeight);
+static inline BOOL isHigherOrEqualToiOSVersion(float version) {
+    return ([[[UIDevice currentDevice] systemVersion] floatValue] >= version);
 }
 
-static inline BOOL iOS7Device() {
-    return ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0);
-}
-
-static inline BOOL iOS8Device() {
-    return ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0);
-}
-
-#pragma mark - Determine device resolution
-static inline NSString* deviceResolution() {
+#pragma mark - Device resolution
+static inline NSString *deviceResolution() {
     NSString *resolution = @"hdpi";
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
@@ -89,7 +79,6 @@ static inline NSString* deviceResolution() {
 }
 
 #pragma mark - User Defaults
-
 static inline void saveDefaults() {
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -109,8 +98,7 @@ static inline void setDefaultsValue(NSString *key, id value) {
     setDefaultsValueSaving(key, value, NO);
 }
 
-#pragma mark - Notifications
-
+#pragma mark - NSNotifications
 static inline void addNotificationObserverWithObject(id observer, SEL selector, NSString *notificationName, id object) {
     [[NSNotificationCenter defaultCenter] addObserver:observer selector:selector name:notificationName object:object];
 }
@@ -132,7 +120,6 @@ static inline void removeNotificationObserver(id observer) {
 }
 
 #pragma mark - Alert View
-
 static inline void showAlertWithTitleAndDelegate(NSString *title, NSString *message, id delegate) {
     if (iOS8Device()) {
         NSString *titleString = title ? title : @"";
@@ -150,17 +137,7 @@ static inline void showAlert(NSString *message) {
     showAlertWithTitleAndDelegate(nil, message, nil);
 }
 
-#define UltraBoldFontLato(_size_) [UIFont fontWithName:@"Lato-Black" size:_size_ / 1.95]
-#define BoldFontLato(_size_) [UIFont fontWithName:@"Lato-Bold" size:_size_ / 1.95]
-#define NormalFontLato(_size_) [UIFont fontWithName:@"Lato-Regular" size:_size_ / 1.95]
-#define LightFontLato(_size_) [UIFont fontWithName:@"Lato-Light" size:_size_ / 1.95]
-#define ThinFontLato(_size_) [UIFont fontWithName:@"Lato-Hairline" size:_size_ / 1.95]
-#define UltraBoldItalicFontLato(_size_) [UIFont fontWithName:@"Lato-BlackItalic" size:_size_ / 1.95]
-#define BoldItalicFontLato(_size_) [UIFont fontWithName:@"Lato-BoldItalic" size:_size_ / 1.95]
-#define NormalItalicFontLato(_size_) [UIFont fontWithName:@"Lato-Italic" size:_size_ / 1.95]
-#define LightItalicFontLato(_size_) [UIFont fontWithName:@"Lato-LightItalic" size:_size_ / 1.95]
-#define ThinItalicFontLato(_size_) [UIFont fontWithName:@"Lato-HairlineItalic" size:_size_ / 1.95]
-
+#pragma mark - Font
 #define UltraBoldFont(_size_) [UIFont fontWithName:@"HelveticaNeue-Bold" size:_size_ / 1.95]
 #define BoldFont(_size_) [UIFont fontWithName:@"HelveticaNeue-Bold" size:_size_ / 1.95]
 #define NormalFont(_size_) [UIFont fontWithName:@"HelveticaNeue" size:_size_ / 1.95]
@@ -172,12 +149,16 @@ static inline void showAlert(NSString *message) {
 #define LightItalicFont(_size_) [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:_size_ / 1.95]
 #define ThinItalicFont(_size_) [UIFont fontWithName:@"HelveticaNeue-UltraLightItalic" size:_size_ / 1.95]
 
-#pragma mark - Other
-
-static inline UIStoryboard * Storyboard() {
-    return [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+#pragma mark - Storyboard accessor
+static inline UIStoryboard *mainStoryboard() {
+    return storyboardWithName(@"Main");
 }
 
+static inline UIStoryboard *storyboardWithName(NSString *storyboardName) {
+    return [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle mainBundle]];
+}
+
+#pragma mark - Storyboard accessor
 static inline BOOL notNull(id value) {
     return ![value isKindOfClass:[NSNull class]];
 }
