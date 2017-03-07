@@ -1,9 +1,9 @@
 //
-//  VTError.m
-//  Mobmerry
+//  VTDeviceHelper.h
+//  TheGeekProjekt
 //
-//  Created by Vijay Tholpadi on 12/9/15.
-//  Copyright © 2015 InteractionOne. All rights reserved.
+//  Created by Vijay Tholpadi on 6/2/15.
+//  Copyright (c) 2015 TheGeekProjekt. All rights reserved.
 //
 
 #import "VTError.h"

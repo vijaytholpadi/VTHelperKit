@@ -6,95 +6,114 @@
 //
 
 #import "VTNetworkingHelper.h"
-#import "MMAppDelegate.h"
-#import "MMUser.h"
 
+@interface VTNetworkingHelper ()
+@property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
+@end
 
 @implementation VTNetworkingHelper
-
--(id)init{
-    if (self = [super init]) {
-    }
-    return self;
-}
-
 
 + (VTNetworkingHelper *)sharedInstance {
     static id sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
+        [sharedInstance setupSessionManager];
     });
-    
     return sharedInstance;
 }
 
+- (void)setupSessionManager {
+    self.sessionManager = [AFHTTPSessionManager manager];
 
-- (void)performRequestWithPath:(NSString *)path withAuth:(BOOL)needsAuth withRequestJSONSerialized:(BOOL)reqJSONSerialized withCompletionHandler:(VTNetworkRequestCompletionHandler) handler {
-    
-    [self performRequestWithPath:path withAuth:needsAuth forMethod:@"GET" withRequestJSONSerialized:reqJSONSerialized withParams:nil withCompletionHandler:handler];
+    //Comment the following line if you want to disable SSL Certificate pinning. It is currently operating in the Public key pinning mode
+    [self setupSSLCertificatePinningOnSessionManager:self.sessionManager];
 }
 
-
-- (void)performRequestWithPath:(NSString *)path withAuth:(BOOL)needsAuth forMethod:(NSString *)method withRequestJSONSerialized:(BOOL)reqJSONSerialized withParams:(id)params withCompletionHandler:(VTNetworkRequestCompletionHandler) handler {
-    
-    self.isInternetViewVisible = NO;
-    
-    //Reachability detection
-    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        switch (status) {
-            case AFNetworkReachabilityStatusReachableViaWWAN: {
-                [self LoadNoInternetView:NO];
-                break;
-            }
-            case AFNetworkReachabilityStatusReachableViaWiFi: {
-                [self LoadNoInternetView:NO];
-                break;
-            }
-            case AFNetworkReachabilityStatusNotReachable: {
-                break;
-            }
-            default: {
-                break;
-            }
-        }
-    }];
-    
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+- (void)setupSSLCertificatePinningOnSessionManager:(AFHTTPSessionManager*)sessionManager {
     NSSet *certificates = [AFSecurityPolicy certificatesInBundle:[NSBundle mainBundle]];
-    AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey withPinnedCertificates:certificates];
-    manager.securityPolicy = policy;
-    
-    if(reqJSONSerialized == NO){
-        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    } else {
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    }
-    
-    if (needsAuth){
-        [manager.requestSerializer clearAuthorizationHeader];
+    AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey
+                                                withPinnedCertificates:certificates];
+    sessionManager.securityPolicy = policy;
+}
 
-        //Set the user API token here. Need to refactor.
-        [manager.requestSerializer setValue:[NSString stringWithFormat:@"Token token=%@",[MMUser getUserAPIToken]] forHTTPHeaderField:@"Authorization"];
+- (void)performRequestWithPath:(NSString *)path
+                      withAuth:(BOOL)needsAuth
+     withRequestJSONSerialized:(BOOL)reqJSONSerialized
+         withCompletionHandler:(VTNetworkRequestCompletionHandler)handler {
+    
+    [self performRequestWithPath:path
+                        withAuth:needsAuth
+                       forMethod:@"GET"
+       withRequestJSONSerialized:reqJSONSerialized
+                      withParams:nil
+           withCompletionHandler:handler];
+}
+
+- (void)performRequestWithPath:(NSString *)path
+                      withAuth:(BOOL)needsAuth
+                     forMethod:(NSString *)method
+     withRequestJSONSerialized:(BOOL)reqJSONSerialized
+                    withParams:(id)params
+         withCompletionHandler:(VTNetworkRequestCompletionHandler)handler {
+
+    //Setting the request Serializer based on flag (Should consider changing this to Enum)
+    if(reqJSONSerialized == NO){
+        self.sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    } else {
+        self.sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [self.sessionManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [self.sessionManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     }
-    
-    manager.responseSerializer =[AFJSONResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
+    //Check if auth is necessary
+    if (needsAuth){
+        [self setAuthOnSessionManager:self.sessionManager];
+    } else {
+        [self.sessionManager.requestSerializer clearAuthorizationHeader];
+    }
+
+    //Setting the response serializer to JSON by default
+    [self setResponseSerializerForSessionManager:self.sessionManager];
+
+    //Showing the network progress indicator before every request
+    [self activityIndicatorShouldShow:YES];
     
     //Depending on the method type we proceed to the corresponding execution
-    if([method isEqualToString:@"POST"]) {
-        [manager POST:path parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
-            
+    if ([method isEqualToString:@"GET"]) {
+        [self.sessionManager GET:path parameters:params
+                        progress:^(NSProgress * _Nonnull downloadProgress) {
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            
+            [self activityIndicatorShouldShow:NO];
+            if (handler) {
+                handler([self prepareResponseObject:TRUE withData:responseObject andError:nil]);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSHTTPURLResponse *castedResponse = (NSHTTPURLResponse*)task.response;
+            if ([castedResponse statusCode] == 401) {
+                NSLog(@"error code %@",[castedResponse allHeaderFields]);
+                //Handle logic for forbidden request
+                return;
+            }
+
+            [self activityIndicatorShouldShow:NO];
+
+            if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99)) || (error.code == -1009) || (error.code == -1001)) {
+                if(handler) {
+                    VTError *errorDetails = [[VTError alloc] init];
+                    errorDetails.errorDictionary = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];
+                    errorDetails.error = error;
+
+                    handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
+                }
+            }
+        }];
+        
+    } else if([method isEqualToString:@"POST"]) {
+        [self.sessionManager POST:path parameters:params
+                         progress:^(NSProgress * _Nonnull uploadProgress) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [self activityIndicatorShouldShow:NO];
             if(handler) {
                 handler([self prepareResponseObject:TRUE withData:responseObject andError:nil]);
             }
@@ -102,82 +121,40 @@
             NSHTTPURLResponse *castedResponse = (NSHTTPURLResponse*)task.response;
             if (castedResponse.statusCode == 401) {
                 NSLog(@"error code %@",[castedResponse allHeaderFields]);
-                [[MMAppDelegate sharedInstance] resetApp];
+                //Handle logic for forbidden request
                 return;
             }
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
-            if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99))) {
+            [self activityIndicatorShouldShow:NO];
+
+            if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99)) || (error.code == -1009) || (error.code == -1001)) {
                 if(handler) {
                     VTError *errorDetails = [[VTError alloc] init];
                     errorDetails.errorDictionary = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];
                     errorDetails.error = error;
                     handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
                 }
-            }
-            
-            if ((error.code == -1009) || (error.code == -1001)) {
-                [self LoadNoInternetView:YES];
-                VTError *errorDetails = [[VTError alloc] init];
-                errorDetails.error = error;
-                handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
-            }
-        }];
-        
-    } else if ([method isEqualToString:@"GET"]) {
-        [manager GET:path parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            if (handler) {
-                handler([self prepareResponseObject:TRUE withData:responseObject andError:nil]);
-            }
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSHTTPURLResponse *castedResponse = (NSHTTPURLResponse*)task.response;
-            if ([castedResponse statusCode] == 401) {
-                NSLog(@"error code %@",[castedResponse allHeaderFields]);
-                [[MMAppDelegate sharedInstance] resetApp];
-                return;
-            }
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
-            if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99))) {
-                if(handler) {
-                    VTError *errorDetails = [[VTError alloc] init];
-                    errorDetails.errorDictionary = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];
-                    errorDetails.error = error;
-                    
-                    handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
-                }
-            }
-            
-            if ((error.code == -1009) || (error.code == -1001)) {
-                [self LoadNoInternetView:YES];
-                VTError *errorDetails = [[VTError alloc] init];
-                errorDetails.error = error;
-                handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
             }
         }];
         
     } else if ([method isEqualToString:@"PUT"]) {
-        [manager PUT:path parameters:params
+        [self.sessionManager PUT:path parameters:params
              success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                 [self activityIndicatorShouldShow:NO];
                  if (handler) {
                      handler([self prepareResponseObject:TRUE withData:responseObject andError:nil]);
                  }
-                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                 
              } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                  NSHTTPURLResponse *castedResponse = (NSHTTPURLResponse*)task.response;
                  if (castedResponse.statusCode == 401) {
                      NSLog(@"error code %@",[castedResponse allHeaderFields]);
-                     [[MMAppDelegate sharedInstance] resetApp];
+                     //Handle logic for forbidden request
                      return;
                  }
-                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
-                 if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99))) {
+                 [self activityIndicatorShouldShow:NO];
+
+                 if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99)) || (error.code == -1009) || (error.code == -1001)) {
                      if(handler) {
                          VTError *errorDetails = [[VTError alloc] init];
                          errorDetails.errorDictionary = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];
@@ -186,56 +163,53 @@
                          handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
                      }
                  }
-                 
-                 if ((error.code == -1009) || (error.code == -1001)) {
-                     [self LoadNoInternetView:YES];
-                     VTError *errorDetails = [[VTError alloc] init];
-                     errorDetails.error = error;
-                     handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
-                 }
              }];
         
     } else if ([method isEqualToString:@"DELETE"]) {
-        [manager DELETE:path parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self.sessionManager DELETE:path parameters:params
+                            success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [self activityIndicatorShouldShow:NO];
             if (handler) {
                 handler([self prepareResponseObject:TRUE withData:responseObject andError:nil]);
             }
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSHTTPURLResponse *castedResponse = (NSHTTPURLResponse*)task.response;
             if (castedResponse.statusCode == 401) {
                 NSLog(@"error code %@",[castedResponse allHeaderFields]);
-                [[MMAppDelegate sharedInstance] resetApp];
+                //Handle logic for forbidden request
                 return;
             }
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
-            if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99))) {
+            [self activityIndicatorShouldShow:NO];
+
+            if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99)) || (error.code == -1009) || (error.code == -1001)) {
                 if(handler) {
                     VTError *errorDetails = [[VTError alloc] init];
                     errorDetails.errorDictionary = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];
                     errorDetails.error = error;
-                    
+
                     handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
                 }
-            }
-            
-            if ((error.code == -1009) || (error.code == -1001)) {
-                [self LoadNoInternetView:YES];
-                VTError *errorDetails = [[VTError alloc] init];
-                errorDetails.error = error;
-                handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
             }
         }];
     }
 }
 
+- (void)setAuthOnSessionManager:(AFHTTPSessionManager*)sessionManager {
+    //Use this line to set the auth token on your request
+    [self.sessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Token token=%@",@"<Insert Auth Token here>"] forHTTPHeaderField:@"Authorization"];
+}
+
+- (void)setResponseSerializerForSessionManager:(AFHTTPSessionManager*)sessionManager {
+    self.sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    self.sessionManager.responseSerializer.acceptableContentTypes = [sessionManager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    self.sessionManager.responseSerializer.acceptableContentTypes = [sessionManager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
+}
 
 #pragma mark - Helper functions
 - (VTNetworkResponse *)prepareResponseObject:(BOOL) success
                                     withData:(id)response
-                                    andError: (VTError *)error{
+                                    andError: (VTError *)error {
     VTNetworkResponse *responseDetails = [[VTNetworkResponse alloc] init];
     responseDetails.isSuccessful = success;
     responseDetails.data = response;
@@ -243,57 +217,12 @@
     return responseDetails;
 }
 
-
--(void)LoadNoInternetView:(BOOL)Show {
-    
-    if ([[[UIApplication sharedApplication] keyWindow].subviews containsObject: self.noInternetView] == Show) {
-        return;
-        
-    }
-    
-    if (Show) {
-        
-        if (!self.noInternetView) {
-            
-            self.isInternetViewVisible = YES;
-            UINib *nib = [UINib nibWithNibName:@"VTNoInternetView" bundle:nil];
-            self.noInternetView = [[nib instantiateWithOwner:self options:nil] objectAtIndex:0];
-            
-            self.noInternetView.frame = [[UIApplication sharedApplication] keyWindow].frame;
-            
-            self.noInternetView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-        }
-        
-        BOOL addinternetView = YES;
-        
-        MMAppDelegate *myAppDelegate = (MMAppDelegate*)[[UIApplication sharedApplication]delegate];
-        
-        for(UIView *view in myAppDelegate.window.subviews)
-        {
-            if([view isKindOfClass:[VTNoInternetView class]])
-            {
-                addinternetView = NO;
-            }
-        }
-        
-        if (addinternetView) {
-            [[[UIApplication sharedApplication] keyWindow] addSubview: self.noInternetView];
-        }
-    } else {
-        self.isInternetViewVisible = NO;
-        
-        [self.noInternetView removeFromSuperview];
-    }
-}
-
-
 - (void)dealloc {
-    [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
 }
 
-- (AFNetworkReachabilityStatus)getReachabilityStatus
-{
-    return [AFNetworkReachabilityManager sharedManager].networkReachabilityStatus;
+#pragma mark - UIActivityIndicator Helper
+- (void)activityIndicatorShouldShow:(BOOL)shouldShow {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = shouldShow;
 }
 
 @end
