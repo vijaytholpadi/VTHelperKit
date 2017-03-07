@@ -18,7 +18,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
-        [self setupSessionManager];
+        [sharedInstance setupSessionManager];
     });
     return sharedInstance;
 }
@@ -27,7 +27,7 @@
     self.sessionManager = [AFHTTPSessionManager manager];
 
     //Comment the following line if you want to disable SSL Certificate pinning. It is currently operating in the Public key pinning mode
-    [setupSessionManager setupSSLCertificatePinningOnSessionManager:self.sessionManager];
+    [self setupSSLCertificatePinningOnSessionManager:self.sessionManager];
 }
 
 - (void)setupSSLCertificatePinningOnSessionManager:(AFHTTPSessionManager*)sessionManager {
@@ -68,7 +68,7 @@
 
     //Check if auth is necessary
     if (needsAuth){
-        [sessionManager setAuthOnSessionManager:self.sessionManager];
+        [self setAuthOnSessionManager:self.sessionManager];
     } else {
         [self.sessionManager.requestSerializer clearAuthorizationHeader];
     }
@@ -98,7 +98,7 @@
 
             [self activityIndicatorShouldShow:NO];
 
-            if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99))) {
+            if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99)) || (error.code == -1009) || (error.code == -1001)) {
                 if(handler) {
                     VTError *errorDetails = [[VTError alloc] init];
                     errorDetails.errorDictionary = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];
@@ -106,12 +106,6 @@
 
                     handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
                 }
-            }
-
-            if ((error.code == -1009) || (error.code == -1001)) {
-                VTError *errorDetails = [[VTError alloc] init];
-                errorDetails.error = error;
-                handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
             }
         }];
         
@@ -133,19 +127,13 @@
 
             [self activityIndicatorShouldShow:NO];
 
-            if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99))) {
+            if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99)) || (error.code == -1009) || (error.code == -1001)) {
                 if(handler) {
                     VTError *errorDetails = [[VTError alloc] init];
                     errorDetails.errorDictionary = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];
                     errorDetails.error = error;
                     handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
                 }
-            }
-            
-            if ((error.code == -1009) || (error.code == -1001)) {
-                VTError *errorDetails = [[VTError alloc] init];
-                errorDetails.error = error;
-                handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
             }
         }];
         
@@ -166,7 +154,7 @@
 
                  [self activityIndicatorShouldShow:NO];
 
-                 if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99))) {
+                 if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99)) || (error.code == -1009) || (error.code == -1001)) {
                      if(handler) {
                          VTError *errorDetails = [[VTError alloc] init];
                          errorDetails.errorDictionary = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];
@@ -174,12 +162,6 @@
                          
                          handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
                      }
-                 }
-                 
-                 if ((error.code == -1009) || (error.code == -1001)) {
-                     VTError *errorDetails = [[VTError alloc] init];
-                     errorDetails.error = error;
-                     handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
                  }
              }];
         
@@ -200,7 +182,7 @@
 
             [self activityIndicatorShouldShow:NO];
 
-            if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99))) {
+            if (NSLocationInRange(castedResponse.statusCode, NSMakeRange(400, 99)) || (error.code == -1009) || (error.code == -1001)) {
                 if(handler) {
                     VTError *errorDetails = [[VTError alloc] init];
                     errorDetails.errorDictionary = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];
@@ -208,12 +190,6 @@
 
                     handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
                 }
-            }
-            
-            if ((error.code == -1009) || (error.code == -1001)) {
-                VTError *errorDetails = [[VTError alloc] init];
-                errorDetails.error = error;
-                handler([self prepareResponseObject:FALSE withData:nil andError:errorDetails]);
             }
         }];
     }
@@ -226,8 +202,8 @@
 
 - (void)setResponseSerializerForSessionManager:(AFHTTPSessionManager*)sessionManager {
     self.sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
-    self.sessionManager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-    self.sessionManager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
+    self.sessionManager.responseSerializer.acceptableContentTypes = [sessionManager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    self.sessionManager.responseSerializer.acceptableContentTypes = [sessionManager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
 }
 
 #pragma mark - Helper functions

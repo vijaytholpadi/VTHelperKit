@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "36568B0EA9FFD39ABA2BBB48AE272A904CB3FE1E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "755C4BB5DD393BBB26FAB3A7ED1ED230E9C14566" : 9223372036854775807,
+    "36568B0EA9FFD39ABA2BBB48AE272A904CB3FE1E" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6FBDF233-550C-4F9C-94A2-6A3E53CA0488",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "755C4BB5DD393BBB26FAB3A7ED1ED230E9C14566" : "",
+    "36568B0EA9FFD39ABA2BBB48AE272A904CB3FE1E" : "VTHelperKit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "VTNetworkHelperDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SampleProject\/VTNetworkHelperDemo\/VTNetworkHelperDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/vijaytholpadi\/VTHelperKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "36568B0EA9FFD39ABA2BBB48AE272A904CB3FE1E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nikhilprahlad\/SwiftTwitter.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "755C4BB5DD393BBB26FAB3A7ED1ED230E9C14566"
+    }
+  ]
+}

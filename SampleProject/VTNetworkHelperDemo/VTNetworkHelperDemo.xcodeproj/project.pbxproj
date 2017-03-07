@@ -1,0 +1,801 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00B4AD6B1E6DA51A002AF6AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4AD6A1E6DA51A002AF6AA /* main.m */; };
+		00B4AD6E1E6DA51A002AF6AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4AD6D1E6DA51A002AF6AA /* AppDelegate.m */; };
+		00B4AD711E6DA51A002AF6AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4AD701E6DA51A002AF6AA /* ViewController.m */; };
+		00B4AD741E6DA51A002AF6AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00B4AD721E6DA51A002AF6AA /* Main.storyboard */; };
+		00B4AD761E6DA51A002AF6AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00B4AD751E6DA51A002AF6AA /* Assets.xcassets */; };
+		00B4AD791E6DA51A002AF6AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00B4AD771E6DA51A002AF6AA /* LaunchScreen.storyboard */; };
+		00B4AD841E6DA51B002AF6AA /* VTNetworkHelperDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4AD831E6DA51B002AF6AA /* VTNetworkHelperDemoTests.m */; };
+		00B4AD8F1E6DA51B002AF6AA /* VTNetworkHelperDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4AD8E1E6DA51B002AF6AA /* VTNetworkHelperDemoUITests.m */; };
+		00B4ADBF1E6DB2A3002AF6AA /* VTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4ADB41E6DB2A3002AF6AA /* VTError.m */; };
+		00B4ADC01E6DB2A3002AF6AA /* VTNetworkingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4ADB71E6DB2A3002AF6AA /* VTNetworkingHelper.m */; };
+		00B4ADC11E6DB2A3002AF6AA /* VTNetworkResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4ADBA1E6DB2A3002AF6AA /* VTNetworkResponse.m */; };
+		00B4ADC21E6DB2A3002AF6AA /* VTNoInternetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4ADBD1E6DB2A3002AF6AA /* VTNoInternetView.m */; };
+		00B4ADC31E6DB2A3002AF6AA /* VTNoInternetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B4ADBE1E6DB2A3002AF6AA /* VTNoInternetView.xib */; };
+		B5A72D9E79C20FE317144107 /* libPods-VTNetworkHelperDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A651B5C6748B57082F0C0E /* libPods-VTNetworkHelperDemoTests.a */; };
+		BE8A7F23C4BB1F5E9AE722C6 /* libPods-VTNetworkHelperDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 489B2E0AEDA0C6608ADEEE21 /* libPods-VTNetworkHelperDemo.a */; };
+		E1BA59525903E48B93F97222 /* libPods-VTNetworkHelperDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2D9087BD8F3EF4A86B89CF8 /* libPods-VTNetworkHelperDemoUITests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00B4AD801E6DA51A002AF6AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B4AD5E1E6DA51A002AF6AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00B4AD651E6DA51A002AF6AA;
+			remoteInfo = VTNetworkHelperDemo;
+		};
+		00B4AD8B1E6DA51B002AF6AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B4AD5E1E6DA51A002AF6AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00B4AD651E6DA51A002AF6AA;
+			remoteInfo = VTNetworkHelperDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00B4AD661E6DA51A002AF6AA /* VTNetworkHelperDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VTNetworkHelperDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00B4AD6A1E6DA51A002AF6AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		00B4AD6C1E6DA51A002AF6AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		00B4AD6D1E6DA51A002AF6AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		00B4AD6F1E6DA51A002AF6AA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		00B4AD701E6DA51A002AF6AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		00B4AD731E6DA51A002AF6AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		00B4AD751E6DA51A002AF6AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00B4AD781E6DA51A002AF6AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		00B4AD7A1E6DA51A002AF6AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00B4AD7F1E6DA51A002AF6AA /* VTNetworkHelperDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VTNetworkHelperDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00B4AD831E6DA51B002AF6AA /* VTNetworkHelperDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTNetworkHelperDemoTests.m; sourceTree = "<group>"; };
+		00B4AD851E6DA51B002AF6AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00B4AD8A1E6DA51B002AF6AA /* VTNetworkHelperDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VTNetworkHelperDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00B4AD8E1E6DA51B002AF6AA /* VTNetworkHelperDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTNetworkHelperDemoUITests.m; sourceTree = "<group>"; };
+		00B4AD901E6DA51B002AF6AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00B4ADB11E6DB2A3002AF6AA /* VTDeviceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDeviceHelper.h; sourceTree = "<group>"; };
+		00B4ADB31E6DB2A3002AF6AA /* VTError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTError.h; sourceTree = "<group>"; };
+		00B4ADB41E6DB2A3002AF6AA /* VTError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTError.m; sourceTree = "<group>"; };
+		00B4ADB61E6DB2A3002AF6AA /* VTNetworkingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTNetworkingHelper.h; sourceTree = "<group>"; };
+		00B4ADB71E6DB2A3002AF6AA /* VTNetworkingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTNetworkingHelper.m; sourceTree = "<group>"; };
+		00B4ADB91E6DB2A3002AF6AA /* VTNetworkResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTNetworkResponse.h; sourceTree = "<group>"; };
+		00B4ADBA1E6DB2A3002AF6AA /* VTNetworkResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTNetworkResponse.m; sourceTree = "<group>"; };
+		00B4ADBC1E6DB2A3002AF6AA /* VTNoInternetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTNoInternetView.h; sourceTree = "<group>"; };
+		00B4ADBD1E6DB2A3002AF6AA /* VTNoInternetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTNoInternetView.m; sourceTree = "<group>"; };
+		00B4ADBE1E6DB2A3002AF6AA /* VTNoInternetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VTNoInternetView.xib; sourceTree = "<group>"; };
+		3DA233A39F0A54BEF45576FF /* Pods-VTNetworkHelperDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VTNetworkHelperDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VTNetworkHelperDemoTests/Pods-VTNetworkHelperDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		489B2E0AEDA0C6608ADEEE21 /* libPods-VTNetworkHelperDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VTNetworkHelperDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B1D05F0BF52C2104AC27DA4 /* Pods-VTNetworkHelperDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VTNetworkHelperDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VTNetworkHelperDemoUITests/Pods-VTNetworkHelperDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		53640D6D7ACB9E7339D8792B /* Pods-VTNetworkHelperDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VTNetworkHelperDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VTNetworkHelperDemo/Pods-VTNetworkHelperDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		7C32415B023B36FE120D6C3D /* Pods-VTNetworkHelperDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VTNetworkHelperDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VTNetworkHelperDemoUITests/Pods-VTNetworkHelperDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		94B9E77E99FE5983831666D3 /* Pods-VTNetworkHelperDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VTNetworkHelperDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-VTNetworkHelperDemo/Pods-VTNetworkHelperDemo.release.xcconfig"; sourceTree = "<group>"; };
+		C0A651B5C6748B57082F0C0E /* libPods-VTNetworkHelperDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VTNetworkHelperDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E28B1254F9EC768E350F8AB5 /* Pods-VTNetworkHelperDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VTNetworkHelperDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VTNetworkHelperDemoTests/Pods-VTNetworkHelperDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		F2D9087BD8F3EF4A86B89CF8 /* libPods-VTNetworkHelperDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VTNetworkHelperDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00B4AD631E6DA51A002AF6AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE8A7F23C4BB1F5E9AE722C6 /* libPods-VTNetworkHelperDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00B4AD7C1E6DA51A002AF6AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5A72D9E79C20FE317144107 /* libPods-VTNetworkHelperDemoTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00B4AD871E6DA51B002AF6AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1BA59525903E48B93F97222 /* libPods-VTNetworkHelperDemoUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00B4AD5D1E6DA51A002AF6AA = {
+			isa = PBXGroup;
+			children = (
+				00B4AD681E6DA51A002AF6AA /* VTNetworkHelperDemo */,
+				00B4AD821E6DA51A002AF6AA /* VTNetworkHelperDemoTests */,
+				00B4AD8D1E6DA51B002AF6AA /* VTNetworkHelperDemoUITests */,
+				00B4AD671E6DA51A002AF6AA /* Products */,
+				B1997EB3BFE5A99A9386594B /* Pods */,
+				89F709FC03046F491A0B775D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		00B4AD671E6DA51A002AF6AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00B4AD661E6DA51A002AF6AA /* VTNetworkHelperDemo.app */,
+				00B4AD7F1E6DA51A002AF6AA /* VTNetworkHelperDemoTests.xctest */,
+				00B4AD8A1E6DA51B002AF6AA /* VTNetworkHelperDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00B4AD681E6DA51A002AF6AA /* VTNetworkHelperDemo */ = {
+			isa = PBXGroup;
+			children = (
+				00B4ADB01E6DB2A3002AF6AA /* VTDeviceHelper */,
+				00B4ADB21E6DB2A3002AF6AA /* VTError */,
+				00B4ADB51E6DB2A3002AF6AA /* VTNetworkHelper */,
+				00B4ADB81E6DB2A3002AF6AA /* VTNetworkResponse */,
+				00B4ADBB1E6DB2A3002AF6AA /* VTNoInternetView */,
+				00B4AD6C1E6DA51A002AF6AA /* AppDelegate.h */,
+				00B4AD6D1E6DA51A002AF6AA /* AppDelegate.m */,
+				00B4AD6F1E6DA51A002AF6AA /* ViewController.h */,
+				00B4AD701E6DA51A002AF6AA /* ViewController.m */,
+				00B4AD721E6DA51A002AF6AA /* Main.storyboard */,
+				00B4AD751E6DA51A002AF6AA /* Assets.xcassets */,
+				00B4AD771E6DA51A002AF6AA /* LaunchScreen.storyboard */,
+				00B4AD7A1E6DA51A002AF6AA /* Info.plist */,
+				00B4AD691E6DA51A002AF6AA /* Supporting Files */,
+			);
+			path = VTNetworkHelperDemo;
+			sourceTree = "<group>";
+		};
+		00B4AD691E6DA51A002AF6AA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00B4AD6A1E6DA51A002AF6AA /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		00B4AD821E6DA51A002AF6AA /* VTNetworkHelperDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				00B4AD831E6DA51B002AF6AA /* VTNetworkHelperDemoTests.m */,
+				00B4AD851E6DA51B002AF6AA /* Info.plist */,
+			);
+			path = VTNetworkHelperDemoTests;
+			sourceTree = "<group>";
+		};
+		00B4AD8D1E6DA51B002AF6AA /* VTNetworkHelperDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				00B4AD8E1E6DA51B002AF6AA /* VTNetworkHelperDemoUITests.m */,
+				00B4AD901E6DA51B002AF6AA /* Info.plist */,
+			);
+			path = VTNetworkHelperDemoUITests;
+			sourceTree = "<group>";
+		};
+		00B4ADB01E6DB2A3002AF6AA /* VTDeviceHelper */ = {
+			isa = PBXGroup;
+			children = (
+				00B4ADB11E6DB2A3002AF6AA /* VTDeviceHelper.h */,
+			);
+			name = VTDeviceHelper;
+			path = ../../../VTDeviceHelper;
+			sourceTree = "<group>";
+		};
+		00B4ADB21E6DB2A3002AF6AA /* VTError */ = {
+			isa = PBXGroup;
+			children = (
+				00B4ADB31E6DB2A3002AF6AA /* VTError.h */,
+				00B4ADB41E6DB2A3002AF6AA /* VTError.m */,
+			);
+			name = VTError;
+			path = ../../../VTError;
+			sourceTree = "<group>";
+		};
+		00B4ADB51E6DB2A3002AF6AA /* VTNetworkHelper */ = {
+			isa = PBXGroup;
+			children = (
+				00B4ADB61E6DB2A3002AF6AA /* VTNetworkingHelper.h */,
+				00B4ADB71E6DB2A3002AF6AA /* VTNetworkingHelper.m */,
+			);
+			name = VTNetworkHelper;
+			path = ../../../VTNetworkHelper;
+			sourceTree = "<group>";
+		};
+		00B4ADB81E6DB2A3002AF6AA /* VTNetworkResponse */ = {
+			isa = PBXGroup;
+			children = (
+				00B4ADB91E6DB2A3002AF6AA /* VTNetworkResponse.h */,
+				00B4ADBA1E6DB2A3002AF6AA /* VTNetworkResponse.m */,
+			);
+			name = VTNetworkResponse;
+			path = ../../../VTNetworkResponse;
+			sourceTree = "<group>";
+		};
+		00B4ADBB1E6DB2A3002AF6AA /* VTNoInternetView */ = {
+			isa = PBXGroup;
+			children = (
+				00B4ADBC1E6DB2A3002AF6AA /* VTNoInternetView.h */,
+				00B4ADBD1E6DB2A3002AF6AA /* VTNoInternetView.m */,
+				00B4ADBE1E6DB2A3002AF6AA /* VTNoInternetView.xib */,
+			);
+			name = VTNoInternetView;
+			path = ../../../VTNoInternetView;
+			sourceTree = "<group>";
+		};
+		89F709FC03046F491A0B775D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				489B2E0AEDA0C6608ADEEE21 /* libPods-VTNetworkHelperDemo.a */,
+				C0A651B5C6748B57082F0C0E /* libPods-VTNetworkHelperDemoTests.a */,
+				F2D9087BD8F3EF4A86B89CF8 /* libPods-VTNetworkHelperDemoUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B1997EB3BFE5A99A9386594B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				53640D6D7ACB9E7339D8792B /* Pods-VTNetworkHelperDemo.debug.xcconfig */,
+				94B9E77E99FE5983831666D3 /* Pods-VTNetworkHelperDemo.release.xcconfig */,
+				3DA233A39F0A54BEF45576FF /* Pods-VTNetworkHelperDemoTests.debug.xcconfig */,
+				E28B1254F9EC768E350F8AB5 /* Pods-VTNetworkHelperDemoTests.release.xcconfig */,
+				4B1D05F0BF52C2104AC27DA4 /* Pods-VTNetworkHelperDemoUITests.debug.xcconfig */,
+				7C32415B023B36FE120D6C3D /* Pods-VTNetworkHelperDemoUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00B4AD651E6DA51A002AF6AA /* VTNetworkHelperDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00B4AD931E6DA51B002AF6AA /* Build configuration list for PBXNativeTarget "VTNetworkHelperDemo" */;
+			buildPhases = (
+				175B9DE635DF55F267155D1F /* [CP] Check Pods Manifest.lock */,
+				00B4AD621E6DA51A002AF6AA /* Sources */,
+				00B4AD631E6DA51A002AF6AA /* Frameworks */,
+				00B4AD641E6DA51A002AF6AA /* Resources */,
+				FE669EBC5F2634D23121910E /* [CP] Embed Pods Frameworks */,
+				D118AE7E8C26D2047A0F4C7A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VTNetworkHelperDemo;
+			productName = VTNetworkHelperDemo;
+			productReference = 00B4AD661E6DA51A002AF6AA /* VTNetworkHelperDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		00B4AD7E1E6DA51A002AF6AA /* VTNetworkHelperDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00B4AD961E6DA51B002AF6AA /* Build configuration list for PBXNativeTarget "VTNetworkHelperDemoTests" */;
+			buildPhases = (
+				43C2D3B480A6951D5859C74A /* [CP] Check Pods Manifest.lock */,
+				00B4AD7B1E6DA51A002AF6AA /* Sources */,
+				00B4AD7C1E6DA51A002AF6AA /* Frameworks */,
+				00B4AD7D1E6DA51A002AF6AA /* Resources */,
+				BB74F1CBC6B3AF0AFF45A157 /* [CP] Embed Pods Frameworks */,
+				84F8862DB5D02CAB44A5C478 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00B4AD811E6DA51A002AF6AA /* PBXTargetDependency */,
+			);
+			name = VTNetworkHelperDemoTests;
+			productName = VTNetworkHelperDemoTests;
+			productReference = 00B4AD7F1E6DA51A002AF6AA /* VTNetworkHelperDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		00B4AD891E6DA51B002AF6AA /* VTNetworkHelperDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00B4AD991E6DA51B002AF6AA /* Build configuration list for PBXNativeTarget "VTNetworkHelperDemoUITests" */;
+			buildPhases = (
+				409F1C9FE95EF7AC52D4FF37 /* [CP] Check Pods Manifest.lock */,
+				00B4AD861E6DA51B002AF6AA /* Sources */,
+				00B4AD871E6DA51B002AF6AA /* Frameworks */,
+				00B4AD881E6DA51B002AF6AA /* Resources */,
+				678D9D2776DD5444290F6F5D /* [CP] Embed Pods Frameworks */,
+				A9A7FE05F13B1EB36FE043DD /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00B4AD8C1E6DA51B002AF6AA /* PBXTargetDependency */,
+			);
+			name = VTNetworkHelperDemoUITests;
+			productName = VTNetworkHelperDemoUITests;
+			productReference = 00B4AD8A1E6DA51B002AF6AA /* VTNetworkHelperDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00B4AD5E1E6DA51A002AF6AA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Nikhil Prahlad";
+				TargetAttributes = {
+					00B4AD651E6DA51A002AF6AA = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					00B4AD7E1E6DA51A002AF6AA = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 00B4AD651E6DA51A002AF6AA;
+					};
+					00B4AD891E6DA51B002AF6AA = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 00B4AD651E6DA51A002AF6AA;
+					};
+				};
+			};
+			buildConfigurationList = 00B4AD611E6DA51A002AF6AA /* Build configuration list for PBXProject "VTNetworkHelperDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 00B4AD5D1E6DA51A002AF6AA;
+			productRefGroup = 00B4AD671E6DA51A002AF6AA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00B4AD651E6DA51A002AF6AA /* VTNetworkHelperDemo */,
+				00B4AD7E1E6DA51A002AF6AA /* VTNetworkHelperDemoTests */,
+				00B4AD891E6DA51B002AF6AA /* VTNetworkHelperDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00B4AD641E6DA51A002AF6AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00B4ADC31E6DB2A3002AF6AA /* VTNoInternetView.xib in Resources */,
+				00B4AD791E6DA51A002AF6AA /* LaunchScreen.storyboard in Resources */,
+				00B4AD761E6DA51A002AF6AA /* Assets.xcassets in Resources */,
+				00B4AD741E6DA51A002AF6AA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00B4AD7D1E6DA51A002AF6AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00B4AD881E6DA51B002AF6AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		175B9DE635DF55F267155D1F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		409F1C9FE95EF7AC52D4FF37 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		43C2D3B480A6951D5859C74A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		678D9D2776DD5444290F6F5D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VTNetworkHelperDemoUITests/Pods-VTNetworkHelperDemoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84F8862DB5D02CAB44A5C478 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VTNetworkHelperDemoTests/Pods-VTNetworkHelperDemoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9A7FE05F13B1EB36FE043DD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VTNetworkHelperDemoUITests/Pods-VTNetworkHelperDemoUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB74F1CBC6B3AF0AFF45A157 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VTNetworkHelperDemoTests/Pods-VTNetworkHelperDemoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D118AE7E8C26D2047A0F4C7A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VTNetworkHelperDemo/Pods-VTNetworkHelperDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE669EBC5F2634D23121910E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VTNetworkHelperDemo/Pods-VTNetworkHelperDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00B4AD621E6DA51A002AF6AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00B4ADBF1E6DB2A3002AF6AA /* VTError.m in Sources */,
+				00B4ADC11E6DB2A3002AF6AA /* VTNetworkResponse.m in Sources */,
+				00B4ADC01E6DB2A3002AF6AA /* VTNetworkingHelper.m in Sources */,
+				00B4AD711E6DA51A002AF6AA /* ViewController.m in Sources */,
+				00B4AD6E1E6DA51A002AF6AA /* AppDelegate.m in Sources */,
+				00B4AD6B1E6DA51A002AF6AA /* main.m in Sources */,
+				00B4ADC21E6DB2A3002AF6AA /* VTNoInternetView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00B4AD7B1E6DA51A002AF6AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00B4AD841E6DA51B002AF6AA /* VTNetworkHelperDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00B4AD861E6DA51B002AF6AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00B4AD8F1E6DA51B002AF6AA /* VTNetworkHelperDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00B4AD811E6DA51A002AF6AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00B4AD651E6DA51A002AF6AA /* VTNetworkHelperDemo */;
+			targetProxy = 00B4AD801E6DA51A002AF6AA /* PBXContainerItemProxy */;
+		};
+		00B4AD8C1E6DA51B002AF6AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00B4AD651E6DA51A002AF6AA /* VTNetworkHelperDemo */;
+			targetProxy = 00B4AD8B1E6DA51B002AF6AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		00B4AD721E6DA51A002AF6AA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00B4AD731E6DA51A002AF6AA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		00B4AD771E6DA51A002AF6AA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00B4AD781E6DA51A002AF6AA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00B4AD911E6DA51B002AF6AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		00B4AD921E6DA51B002AF6AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		00B4AD941E6DA51B002AF6AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53640D6D7ACB9E7339D8792B /* Pods-VTNetworkHelperDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = VTNetworkHelperDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.ist.VTNetworkHelperDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		00B4AD951E6DA51B002AF6AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94B9E77E99FE5983831666D3 /* Pods-VTNetworkHelperDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = VTNetworkHelperDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.ist.VTNetworkHelperDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		00B4AD971E6DA51B002AF6AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DA233A39F0A54BEF45576FF /* Pods-VTNetworkHelperDemoTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = VTNetworkHelperDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.ist.VTNetworkHelperDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VTNetworkHelperDemo.app/VTNetworkHelperDemo";
+			};
+			name = Debug;
+		};
+		00B4AD981E6DA51B002AF6AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E28B1254F9EC768E350F8AB5 /* Pods-VTNetworkHelperDemoTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = VTNetworkHelperDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.ist.VTNetworkHelperDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VTNetworkHelperDemo.app/VTNetworkHelperDemo";
+			};
+			name = Release;
+		};
+		00B4AD9A1E6DA51B002AF6AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B1D05F0BF52C2104AC27DA4 /* Pods-VTNetworkHelperDemoUITests.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = VTNetworkHelperDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.ist.VTNetworkHelperDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = VTNetworkHelperDemo;
+			};
+			name = Debug;
+		};
+		00B4AD9B1E6DA51B002AF6AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C32415B023B36FE120D6C3D /* Pods-VTNetworkHelperDemoUITests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = VTNetworkHelperDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.ist.VTNetworkHelperDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = VTNetworkHelperDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00B4AD611E6DA51A002AF6AA /* Build configuration list for PBXProject "VTNetworkHelperDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00B4AD911E6DA51B002AF6AA /* Debug */,
+				00B4AD921E6DA51B002AF6AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00B4AD931E6DA51B002AF6AA /* Build configuration list for PBXNativeTarget "VTNetworkHelperDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00B4AD941E6DA51B002AF6AA /* Debug */,
+				00B4AD951E6DA51B002AF6AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00B4AD961E6DA51B002AF6AA /* Build configuration list for PBXNativeTarget "VTNetworkHelperDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00B4AD971E6DA51B002AF6AA /* Debug */,
+				00B4AD981E6DA51B002AF6AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00B4AD991E6DA51B002AF6AA /* Build configuration list for PBXNativeTarget "VTNetworkHelperDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00B4AD9A1E6DA51B002AF6AA /* Debug */,
+				00B4AD9B1E6DA51B002AF6AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00B4AD5E1E6DA51A002AF6AA /* Project object */;
+}
